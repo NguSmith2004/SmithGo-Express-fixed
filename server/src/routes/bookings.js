@@ -1,0 +1,1 @@
+import {Router} from 'express';import {create,mine,all,cancel,ticket} from '../controllers/bookings.js';import {auth,admin} from '../middleware/auth.js';const r=Router();r.post('/',auth,create);r.get('/mine',auth,mine);r.get('/all',auth,admin,all);r.patch('/:id/cancel',auth,cancel);r.get('/:id/ticket',auth,ticket);export default r;
