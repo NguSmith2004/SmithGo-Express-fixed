@@ -76,11 +76,11 @@ const startServer = async () => {
   try {
     await connectDB();
 
-    app.listen(PORT, () => {
-      console.log(`API running on ${PORT}`);
-      console.log(`Client URL: ${CLIENT_URL}`);
-      console.log(`Health: http://localhost:${PORT}/api/health`);
-    });
+    app.listen(PORT, "0.0.0.0", () => {
+  console.log(`API running on ${PORT}`);
+  console.log(`Client URL: ${CLIENT_URL}`);
+  console.log(`Health: http://localhost:${PORT}/api/health`);
+});
   } catch (error) {
     console.error("Failed to start server:", error);
     process.exit(1);
