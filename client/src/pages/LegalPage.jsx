@@ -60,7 +60,7 @@ const content = {
       ['Technical safeguards', 'The application uses bcrypt password hashing, JWT authentication, role checks, account scoping, server-side prices and seat reservations, payment-gated tickets, manual payment verification, environment-based secrets, MongoDB schema validation, and protected administrative endpoints.'],
       ['Current limits', 'The business operator, carrier/intermediary model, transport authorizations, tax/invoicing position, data-protection filings or approvals if applicable, cross-border processing, retention schedule, contracts, complaints channel, and payment-provider arrangements require external confirmation.'],
       ['Sources reviewed', 'Cameroon Law No. 2010/021 on electronic commerce is published through ART: https://www.art.cm/sites/default/files/documents/Loi-commerce-electronique-N-2010-021-du-21-12-2010.pdf. ART also publishes operator USSD information at https://www.art.cm/fr/code-ussd-operateurs. MINPOSTEL maintains a legal-texts portal at https://www.minpostel.gov.cm/index.php/en/legal-texts. Current-law status and application of personal-data and transport requirements require qualified review.'],
-      ['Contact', 'Compliance questions and data requests should go to [OFFICIAL CONTACT EMAIL]. Replace this placeholder before launch.']
+      ['Contact', 'Compliance questions and data requests should go to [ngusmith4@gmail.com].']
     ]
   }
 };

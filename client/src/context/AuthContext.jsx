@@ -3,10 +3,6 @@ import { api } from "../lib/api";
 
 const AuthContext = createContext(null);
 
-// NOTE: api.js reads the auth token from localStorage under the key
-// "sg_token" on every request. This must stay in sync with that key,
-// or authenticated requests (bookings, admin) will silently look
-// unauthenticated even after a successful login.
 const TOKEN_KEY = "sg_token";
 const USER_KEY = "smithgo_user";
 
@@ -41,32 +37,49 @@ export const AuthProvider = ({ children }) => {
     }
   }, [token]);
 
-  // Auth.jsx calls login({ email, password }) and awaits it, expecting
-  // it to hit the API and throw on failure (it catches e.message).
   const login = async ({ email, password }) => {
     const data = await api("/auth/login", {
       method: "POST",
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({
+        email,
+        password,
+      }),
     });
+
     setUser(data.user);
     setToken(data.token);
+
     return data;
   };
 
-  // Auth.jsx calls register(form) the same way for the sign-up flow.
-  const register = async ({ name, email, phone, password }) => {
+  const register = async ({
+    name,
+    email,
+    phone,
+    password,
+    termsAccepted,
+  }) => {
     const data = await api("/auth/register", {
       method: "POST",
-      body: JSON.stringify({ name, email, phone, password }),
+      body: JSON.stringify({
+        name,
+        email,
+        phone,
+        password,
+        termsAccepted,
+      }),
     });
+
     setUser(data.user);
     setToken(data.token);
+
     return data;
   };
 
   const logout = () => {
     setUser(null);
     setToken(null);
+
     localStorage.removeItem(USER_KEY);
     localStorage.removeItem(TOKEN_KEY);
   };
@@ -81,7 +94,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={value}>
+      {children}
+    </AuthContext.Provider>
   );
 };
 
