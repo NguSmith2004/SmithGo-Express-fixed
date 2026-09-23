@@ -1,12 +1,1 @@
-import { Router } from 'express';
-import { list, all, create, update, remove } from '../controllers/agencies.js';
-import { auth, admin, adminOrManager } from '../middleware/auth.js';
-
-const router = Router();
-router.get('/', list);
-router.get('/manage', auth, adminOrManager, all);
-router.post('/', auth, adminOrManager, create);
-router.put('/:id', auth, adminOrManager, update);
-router.delete('/:id', auth, adminOrManager, remove);
-
-export default router;
+import {Router} from 'express';import {list,all,create,update,remove} from '../controllers/agencies.js';import {auth,admin} from '../middleware/auth.js';const r=Router();r.get('/',list);r.get('/manage',auth,admin,all);r.post('/',auth,admin,create);r.put('/:id',auth,admin,update);r.delete('/:id',auth,admin,remove);export default r;

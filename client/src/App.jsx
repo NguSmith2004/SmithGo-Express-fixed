@@ -7,8 +7,7 @@ import Book from "./pages/Book";
 import Bookings from "./pages/Bookings";
 import Admin from "./pages/Admin";
 import Confirmation from "./pages/Confirmation";
-import Footer from "./components/Footer";
-import LegalPage from "./pages/LegalPage";
+import PaymentResult from "./pages/PaymentResult";
 import { useAuth } from "./context/AuthContext";
 
 function RequireAuth({ children, adminOnly = false }) {
@@ -55,6 +54,7 @@ export default function App() {
             </RequireAuth>
           }
         />
+        <Route path="/payment-result" element={<RequireAuth><PaymentResult /></RequireAuth>} />
         <Route
           path="/confirmation"
           element={
@@ -71,15 +71,8 @@ export default function App() {
             </RequireAuth>
           }
         />
-        <Route path="/privacy" element={<LegalPage type="privacy" />} />
-        <Route path="/terms" element={<LegalPage type="terms" />} />
-        <Route path="/payment-policy" element={<LegalPage type="payment" />} />
-        <Route path="/cancellation-policy" element={<LegalPage type="cancellation" />} />
-        <Route path="/faq" element={<LegalPage type="faq" />} />
-        <Route path="/legal-compliance" element={<LegalPage type="compliance" />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <Footer />
     </>
   );
 }

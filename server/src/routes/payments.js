@@ -1,12 +1,11 @@
 import { Router } from 'express';
-import { submit, mine, all, verify, getForBooking } from '../controllers/payments.js';
-import { auth, admin } from '../middleware/auth.js';
+import { createCheckout, status, callback, webhook, all } from '../controllers/payments.js';
+import { auth } from '../middleware/auth.js';
 
-const router = Router();
-router.get('/mine', auth, mine);
-router.get('/booking/:bookingId', auth, getForBooking);
-router.post('/booking/:bookingId/submit', auth, submit);
-router.get('/', auth, admin, all);
-router.patch('/:id/verify', auth, admin, verify);
-
-export default router;
+const r = Router();
+r.post('/flutterwave/webhook', webhook);
+r.get('/flutterwave/callback', callback);
+r.post('/create-checkout', auth, createCheckout);
+r.get('/status/:bookingId', auth, status);
+r.get('/all', auth, (req, res, next) => req.user.role === 'admin' ? next() : res.status(403).json({ message: 'Admin access required.' }), all);
+export default r;
