@@ -41,23 +41,8 @@ npm install
 npm run dev
 ```
 
-## Flutterwave webhook
 
-Configure this URL in the Flutterwave Dashboard:
 
-```text
-https://YOUR_PUBLIC_BACKEND_DOMAIN/api/payments/flutterwave/webhook
-```
-
-Flutterwave's callback URL is:
-
-```text
-https://YOUR_PUBLIC_BACKEND_DOMAIN/api/payments/flutterwave/callback
-```
-
-For local development, expose port 5000 with an HTTPS tunnel such as ngrok or Cloudflare Tunnel and put that public URL in `SERVER_PUBLIC_URL`.
-
-See **FLUTTERWAVE_SETUP.md** for the full setup and testing checklist.
 
 ## Payment lifecycle
 
